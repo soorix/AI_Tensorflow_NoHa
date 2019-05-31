@@ -1,2 +1,2 @@
 # Start_Python
-Python 공부합시다!
+Python <strong>공부</strong>합시다!
