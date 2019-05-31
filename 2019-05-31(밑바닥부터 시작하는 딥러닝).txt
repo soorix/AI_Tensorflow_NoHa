@@ -1,0 +1,70 @@
+퍼셉트론: 신경망 (딥러닝)의 기원이 되는 알고리즘 
+
+인자(x)에 가중치(w)를 적용한 값이 활성 수치 (b; 편향)을 넘어서게 되면 return 1 넘지 못하면 return 0
+
+AND 퍼셉트론
+def AND(x1, x2):
+...     x = np.array([x1, x2])
+...     w = np.array([0.5, 0.5])
+...     b = -0.7
+...     tmp = np.sum(w*x)+b
+...     if tmp <= 0:
+...             return 0
+...     else:
+...             return 1
+
+NAND 퍼셉트론
+def NAND(x1, x2):
+...     x = np.array([x1, x2])
+...     w = np.array([-0.5, -0.5])
+...     b = 0.7
+...     tmp = np.sum(w*x)+b
+...     if tmp <= 0:
+...             return 0
+...     else:
+...             return 1
+
+OR 퍼셉트론
+def OR(x1, x2):
+...     x = np.array([x1, x2])
+...     w = np.array([0.5, 0.5])
+...     b = -0.2
+...     tmp = np.sum(w*x)+b
+...     if tmp <= 0:
+...             return 0
+...     else:
+...             return 1
+
+XOR 퍼셉트론
+def XOR(x1, x2):
+...     s1 = NAND(x1, x2)
+...     s2 = OR(x1, x2)
+...     y = AND(s1 ,s2)
+...     return y
+# NAND와 OR와 AND를 이용한 계층구조 형태의 퍼셉트론 구현 -->다층 퍼셉트론
+
+퍼셉트론의 한계 : w와 b를 수동적으로 사람이 조정해야 한다 --> 신경망 구현으로 극복
+
+
+
+입력신호의 총합을 출력신호로 변환하는 함수 : 활성화 함수
+퍼셉트론의 활성화 함수 --> 계단함수(어느 특정 임계치를 넘어서면 활성이 되는 함수)
+
+
+신경망의 대표적인 활성화 함수 --> 시그모이드함수( h(x) = 1/(1+exp(-x)), ReLU(Rectified Linear Unit)함수 (if x>0 return x else x<=0 0)
+
+
+계단함수 0,1
+def step_function(x):
+...     if x > 0:
+...             return 1
+...     else:
+...             return 0
+
+시그모이드 함수 연속적인 실수
+def sigmoid(x):
+...     return 1/(1+np.exp(-x))
+
+ReLU함수 
+def ReLU(x):
+...     return np.max(0,x)
